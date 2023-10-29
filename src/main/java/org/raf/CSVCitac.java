@@ -3,9 +3,7 @@ package org.raf;
 import model.boljeRijesenje.Dogadjaj;
 import model.boljeRijesenje.Raspored;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -92,11 +90,50 @@ public class CSVCitac {
         return dogadjaj;
     }
 
-
-
-    private static void stampajDogadjaje(Raspored raspored){
-        for(Dogadjaj dogadjaj : raspored.getDogadjaji()){
-            System.out.println(dogadjaj);
+    public void napraviTempFajl(String fileName){
+        try {
+            // Create a FileWriter object with the file name
+            FileWriter fileWriter = new FileWriter(fileName);
+            fileWriter.close();
+            System.out.println("Temp file created");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+    public void upisiUTempFajl(String fileName,List<Dogadjaj> dogadjaji){
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            for (Dogadjaj dogadjaj : dogadjaji) {
+                fileWriter.write(dogadjaj.toString());
+                fileWriter.write("\n");
+            }
+            fileWriter.close();
+            System.out.println("Temp file created");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public Raspored refreshRaspored(List<Dogadjaj> dogadjaji) throws IOException {
+        String fileName = "new";
+        napraviTempFajl(fileName);
+        upisiUTempFajl(fileName,dogadjaji);
+        Raspored raspored = new Raspored(new Date());
+        String line = "";
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+
+        //pocetno ucitaj jednu liniju i na osnovu nje napravi broj hashMapi koji koristimo
+        line = bufferedReader.readLine();
+        napraviBrojHashMapiZaNiz(line,raspored);
+        dodajUHashMapu(line,raspored);
+
+        while ((line = bufferedReader.readLine()) != null) {
+            dodajUHashMapu(line,raspored);
+        }
+        return raspored;
+
+    }
+
+
 }
