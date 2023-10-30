@@ -19,7 +19,7 @@ public class Implemetacija1 implements Specifikacija {
     public void stampaj() {
 
         StampacKonzola stampacKonzola = new StampacKonzola(raspored);
-        stampacKonzola.stampajImp1();
+        stampacKonzola.stampajSadrzajHashMape();
     }
 
     @Override

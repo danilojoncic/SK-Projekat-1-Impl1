@@ -13,8 +13,15 @@ public class Main {
     public static void main(String[] args) throws IOException {
         CSVCitac csvCitac = new CSVCitac();
         Raspored raspored = csvCitac.citaj("C:\\Users\\jonci\\Desktop\\neBrisati.csv");
-        JSONPIsac jsonpIsac = new JSONPIsac();
-        jsonpIsac.napisiJSON(raspored);
+        CSVPisac csvPisac = new CSVPisac();
+        raspored.setDogadjaji(raspored.vratiFiltrirano("UTO"));
+        csvPisac.napisi(raspored);
+
+
+
+
+        //JSONPIsac jsonpIsac = new JSONPIsac();
+        //jsonpIsac.napisiJSON(raspored);
         /*
         Dogadjaj header = new Dogadjaj(new ArrayList<String>());
         header.getStavkeDogadjaja().add("Predmeti");
