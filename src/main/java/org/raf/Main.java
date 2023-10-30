@@ -12,6 +12,10 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         CSVCitac csvCitac = new CSVCitac();
+        Raspored raspored = csvCitac.citaj("C:\\Users\\jonci\\Desktop\\neBrisati.csv");
+        JSONPIsac jsonpIsac = new JSONPIsac();
+        jsonpIsac.napisiJSON(raspored);
+        /*
         Dogadjaj header = new Dogadjaj(new ArrayList<String>());
         header.getStavkeDogadjaja().add("Predmeti");
         header.getStavkeDogadjaja().add("Dani");
@@ -52,8 +56,10 @@ public class Main {
 
             }
         }
-        //raspored = csvCitac.refreshRaspored(raspored.getDogadjaji());
+        raspored = csvCitac.refreshRaspored(raspored.getDogadjaji());
+        */
         //Implemetacija1 implemetacija1 = new Implemetacija1();
+
         //implemetacija1.ucitajRaspored("D:\\Racunarski Fakultet Beograd\\Treca Godina\\5. Semestar\\Softverske komponente\\src\\main\\resources\\csv.csv");
         //implemetacija1.stampaj();
     }

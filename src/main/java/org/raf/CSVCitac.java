@@ -37,6 +37,7 @@ public class CSVCitac {
         String splits[] = line.split("\"");
         int indexZaHashMapu;
         Dogadjaj dogadjaj = napraviDogadjaj(line);
+        raspored.getDogadjaji().add(dogadjaj);
         for(int i = 0; i < splits.length;i++){
             indexZaHashMapu = i/2;
             if(i % 2 == 1){

@@ -6,10 +6,10 @@ import model.boljeRijesenje.Raspored;
 import java.util.HashMap;
 import java.util.List;
 
-public class StampacImp1 {
+public class StampacKonzola {
     private Raspored raspored;
 
-    public StampacImp1(Raspored raspored) {
+    public StampacKonzola(Raspored raspored) {
         this.raspored = raspored;
     }
 

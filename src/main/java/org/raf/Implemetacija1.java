@@ -18,8 +18,8 @@ public class Implemetacija1 implements Specifikacija {
     @Override
     public void stampaj() {
 
-        StampacImp1 stampacImp1 = new StampacImp1(raspored);
-        stampacImp1.stampajImp1();
+        StampacKonzola stampacKonzola = new StampacKonzola(raspored);
+        stampacKonzola.stampajImp1();
     }
 
     @Override
