@@ -19,8 +19,13 @@ public class CSVCitac {
 
         //pocetno ucitaj jednu liniju i na osnovu nje napravi broj hashMapi koji koristimo
         line = bufferedReader.readLine();
+        raspored.getDogadjaji().add(napraviDogadjaj(line));
         napraviBrojHashMapiZaNiz(line,raspored);
-        dodajUHashMapu(line,raspored);
+//        dodajUHashMapu(line,raspored);
+        raspored.setHeader(raspored.getDogadjaji().get(0));
+        raspored.getDogadjaji().remove(0);
+
+
 
         while ((line = bufferedReader.readLine()) != null) {
             dodajUHashMapu(line,raspored);
