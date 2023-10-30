@@ -14,7 +14,7 @@ public class Main {
         CSVCitac csvCitac = new CSVCitac();
         Raspored raspored = csvCitac.citaj("C:\\Users\\jonci\\Desktop\\neBrisati.csv");
         CSVPisac csvPisac = new CSVPisac();
-        raspored.setDogadjaji(raspored.vratiFiltrirano("UTO"));
+        raspored.setDogadjaji(raspored.vratiFiltrirano("Uvod u programiranje"));
         csvPisac.napisi(raspored);
 
 
