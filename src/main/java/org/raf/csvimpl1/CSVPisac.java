@@ -1,4 +1,4 @@
-package org.raf;
+package org.raf.csvimpl1;
 
 import model.boljeRijesenje.Dogadjaj;
 import model.boljeRijesenje.Raspored;
