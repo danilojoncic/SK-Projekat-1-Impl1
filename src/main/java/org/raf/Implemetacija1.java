@@ -39,6 +39,14 @@ public class Implemetacija1 implements Specifikacija {
 
     }
 
+    public Raspored getRaspored() {
+        return raspored;
+    }
+
+    public void setRaspored(Raspored raspored) {
+        this.raspored = raspored;
+    }
+
     @Override
     public void ucitajRaspored(String s){
         String[] extensionCheck = s.split("\\.");

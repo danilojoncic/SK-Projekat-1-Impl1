@@ -41,6 +41,8 @@ public class JSONCitac {
         List<List<String>> listOfLists = gson.fromJson(sadrzaj,listType);
 
         Raspored raspored = new Raspored();
+        raspored.setHeader(new Dogadjaj(listOfLists.get(0)));
+        raspored.setDogadjaji(new ArrayList<Dogadjaj>());
         for (List<String> listOfList : listOfLists) {
             Dogadjaj d = new Dogadjaj(listOfList);
             raspored.getDogadjaji().add(d);
