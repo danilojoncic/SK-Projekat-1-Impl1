@@ -47,7 +47,7 @@ public class JSONCitac {
             Dogadjaj d = new Dogadjaj(listOfList);
             raspored.getDogadjaji().add(d);
         }
-
+        raspored.getDogadjaji().remove(0);
         raspored.refresh(raspored.getDogadjaji());
         return raspored;
     }
