@@ -34,7 +34,6 @@ public class JSONPIsac {
     }
 
     public void ispisiJSON(File file) throws IOException {
-
         ObjectMapper objectMapper = new ObjectMapper();
         List<String> header = raspored.getHeader().getStavkeDogadjaja();
         List<List<String>> listaDogadjaja = new ArrayList<>();
@@ -49,19 +48,19 @@ public class JSONPIsac {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        CSVCitac csvCitac = new CSVCitac();
-        Raspored raspored = csvCitac.citaj("C:\\Users\\Korisnik\\Desktop\\csv.csv");
-        File file = new File("raspored.json");
-
-        JSONPIsac jsonpIsac = new JSONPIsac(raspored);
-        jsonpIsac.ispisiJSON(file);
-
-        for (Dogadjaj d : raspored.getDogadjaji()) {
-            System.out.println(d);
-        }
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        CSVCitac csvCitac = new CSVCitac();
+//        Raspored raspored = csvCitac.citaj("C:\\Users\\jonci\\Desktop\\neBrisati.csv");
+//        File file = new File("raspored.json");
+//
+//        JSONPIsac jsonpIsac = new JSONPIsac(raspored);
+//        jsonpIsac.ispisiJSON(file);
+//
+//        for (Dogadjaj d : raspored.getDogadjaji()) {
+//            System.out.println(d);
+//        }
+//
+//    }
 
 
 

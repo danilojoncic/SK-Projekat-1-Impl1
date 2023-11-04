@@ -22,21 +22,17 @@ import java.util.List;
 public class JSONCitac {
 
 
-    Raspored raspored;
-    String filePath = "raspored.json";  // Replace with your file path
-    Path path = Paths.get(filePath);
 
-
-
-    public JSONCitac(Raspored raspored) {
-        this.raspored = raspored;
+     // Replace with your file path
+    public JSONCitac() {
 
     }
 
-    public void ispisiJSON(File file) throws IOException {
+    public Raspored procitajJSON(String filePath) throws IOException {
 
         ObjectMapper objectMapper = new ObjectMapper();
 
+        Path path = Paths.get(filePath);
         String sadrzaj = new String(Files.readAllBytes(path));
 
         Gson gson = new Gson();
@@ -51,27 +47,23 @@ public class JSONCitac {
         }
 
         raspored.refresh(raspored.getDogadjaji());
-
-
-
-
-
+        return raspored;
     }
 
 
-    public static void main(String[] args) throws IOException {
-        CSVCitac csvCitac = new CSVCitac();
-        Raspored raspored = csvCitac.citaj("C:\\Users\\Korisnik\\Desktop\\csv.csv");
-        File file = new File("raspored.json");
-
-        JSONPIsac jsonpIsac = new JSONPIsac(raspored);
-        jsonpIsac.ispisiJSON(file);
-
-        for (Dogadjaj d : raspored.getDogadjaji()) {
-            System.out.println(d);
-        }
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        CSVCitac csvCitac = new CSVCitac();
+//        Raspored raspored = csvCitac.citaj("C:\\Users\\Korisnik\\Desktop\\csv.csv");
+//        File file = new File("raspored.json");
+//
+//        JSONPIsac jsonpIsac = new JSONPIsac(raspored);
+//        jsonpIsac.ispisiJSON(file);
+//
+//        for (Dogadjaj d : raspored.getDogadjaji()) {
+//            System.out.println(d);
+//        }
+//
+//    }
 
 
 

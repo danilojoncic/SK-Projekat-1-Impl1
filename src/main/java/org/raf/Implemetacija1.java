@@ -4,6 +4,7 @@ import com.google.common.io.Files;
 import model.Specifikacija;
 import model.boljeRijesenje.Raspored;
 import org.raf.csvimpl1.CSVCitac;
+import org.raf.jsonimpl1.JSONCitac;
 
 
 import java.io.IOException;
@@ -48,12 +49,13 @@ public class Implemetacija1 implements Specifikacija {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
+        }else if(Files.getFileExtension(s).equalsIgnoreCase("json")){
+            JSONCitac  jsonCitac = new JSONCitac();
+            try {
+                raspored = jsonCitac.procitajJSON(s);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
-
     }
-
-
-
-
 }
