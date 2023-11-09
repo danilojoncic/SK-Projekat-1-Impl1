@@ -4,10 +4,14 @@ import com.google.common.io.Files;
 import model.Specifikacija;
 import model.boljeRijesenje.Raspored;
 import org.raf.csvimpl1.CSVCitac;
+import org.raf.csvimpl1.CSVPisac;
 import org.raf.jsonimpl1.JSONCitac;
+import org.raf.jsonimpl1.JSONPIsac;
 
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Implemetacija1 implements Specifikacija {
 
@@ -19,14 +23,28 @@ public class Implemetacija1 implements Specifikacija {
 
     @Override
     public void stampaj() {
-
         StampacKonzola stampacKonzola = new StampacKonzola(raspored);
         stampacKonzola.stampajSadrzajHashMape();
     }
 
     @Override
-    public void kreirajRaspored() {
+    public void kreirajRaspored(String filename,String type) {
+        if(type.equalsIgnoreCase("csv")){
+            List<String> header = this.raspored.getHeader().getStavkeDogadjaja();
+            String[] kolone = new String[header.size()];
+            CSVPisac csvPisac = new CSVPisac();
+            csvPisac.napisi(raspored);
+        }else if(type.equalsIgnoreCase("pdf")){
 
+        }else if(type.equalsIgnoreCase("json")){
+            JSONPIsac jsonpIsac = new JSONPIsac(this.raspored);
+            File file = new File( filename +".json");
+            try {
+                jsonpIsac.ispisiJSON(file);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 
     @Override
@@ -43,9 +61,6 @@ public class Implemetacija1 implements Specifikacija {
         return raspored;
     }
 
-    public void setRaspored(Raspored raspored) {
-        this.raspored = raspored;
-    }
 
     @Override
     public void ucitajRaspored(String s){
@@ -65,5 +80,11 @@ public class Implemetacija1 implements Specifikacija {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+
+
+    public void setRaspored(Raspored raspored) {
+        this.raspored = raspored;
     }
 }
