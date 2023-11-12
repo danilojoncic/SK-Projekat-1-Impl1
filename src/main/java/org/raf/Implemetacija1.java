@@ -7,6 +7,7 @@ import org.raf.csvimpl1.CSVCitac;
 import org.raf.csvimpl1.CSVPisac;
 import org.raf.jsonimpl1.JSONCitac;
 import org.raf.jsonimpl1.JSONPIsac;
+import org.raf.pdf.Imp1Raspored;
 
 
 import java.io.File;
@@ -16,9 +17,18 @@ import java.util.List;
 public class Implemetacija1 implements Specifikacija {
 
     private Raspored raspored;
+    private Imp1Raspored imp1Raspored;
 
     public Implemetacija1() {
+        imp1Raspored = new Imp1Raspored(new Raspored());
+    }
 
+    public Imp1Raspored getImp1Raspored() {
+        return imp1Raspored;
+    }
+
+    public void setImp1Raspored(Imp1Raspored imp1Raspored) {
+        this.imp1Raspored = imp1Raspored;
     }
 
     @Override
