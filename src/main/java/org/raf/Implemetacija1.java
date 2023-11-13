@@ -7,28 +7,17 @@ import org.raf.csvimpl1.CSVCitac;
 import org.raf.csvimpl1.CSVPisac;
 import org.raf.jsonimpl1.JSONCitac;
 import org.raf.jsonimpl1.JSONPIsac;
-import org.raf.pdf.Imp1Raspored;
-
-
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Implemetacija1 implements Specifikacija {
 
     private Raspored raspored;
-    private Imp1Raspored imp1Raspored;
+
 
     public Implemetacija1() {
-        imp1Raspored = new Imp1Raspored(new Raspored());
-    }
-
-    public Imp1Raspored getImp1Raspored() {
-        return imp1Raspored;
-    }
-
-    public void setImp1Raspored(Imp1Raspored imp1Raspored) {
-        this.imp1Raspored = imp1Raspored;
     }
 
     @Override
@@ -91,6 +80,36 @@ public class Implemetacija1 implements Specifikacija {
             }
         }
     }
+
+
+    public void nejmarUPetercu() {
+        //ovo jednostavno mora na ovaj nacin, nema sanse da se koristi obrisiKolonu jer to pravi problem
+        List<Integer> zaBrisanje = new ArrayList<>();
+        for (int i = 0; i < raspored.getHeader().getStavkeDogadjaja().size(); i++) {
+            String columnHeader = raspored.getHeader().getStavkeDogadjaja().get(i);
+            if (!columnHeader.equals("Termin") && !columnHeader.equals("Dan") && !columnHeader.equals("Učionica")) {
+                zaBrisanje.add(i);
+            }
+        }
+        for (int i = zaBrisanje.size() - 1; i >= 0; i--) {
+            int columnIndex = zaBrisanje.get(i);
+            raspored.getHeader().getStavkeDogadjaja().remove(columnIndex);
+        }
+        for (int i = 0; i < raspored.getDogadjaji().size(); i++) {
+            List<String> row = raspored.getDogadjaji().get(i).getStavkeDogadjaja();
+            for (int j = zaBrisanje.size() - 1; j >= 0; j--) {
+                int columnIndex = zaBrisanje.get(j);
+                row.remove(columnIndex);
+            }
+        }
+        raspored.refresh(raspored.getDogadjaji());
+    }
+
+
+    private int dajIndeksZaString(String s){
+        return raspored.getHeader().getStavkeDogadjaja().indexOf(s);
+    }
+
 
 
 
