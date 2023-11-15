@@ -2,6 +2,7 @@ package org.raf;
 
 import com.google.common.io.Files;
 import model.Specifikacija;
+import model.boljeRijesenje.Dogadjaj;
 import model.boljeRijesenje.Raspored;
 import org.raf.csvimpl1.CSVCitac;
 import org.raf.csvimpl1.CSVPisac;
@@ -27,7 +28,7 @@ public class Implemetacija1 implements Specifikacija {
     }
 
     @Override
-    public void kreirajRaspored(String filename,String type) {
+    public void exportujRaspored(String filename, String type) {
         if(type.equalsIgnoreCase("csv")){
             List<String> header = this.raspored.getHeader().getStavkeDogadjaja();
             String[] kolone = new String[header.size()];
@@ -47,13 +48,16 @@ public class Implemetacija1 implements Specifikacija {
     }
 
     @Override
-    public void pretraziRaspred() {
-
+    public void pretraziRaspred(String s) {
+        List<Dogadjaj> filtrirani = raspored.vratiFiltrirano(s);
+        raspored.refresh(filtrirani);
     }
+
+
 
     @Override
     public void sacuvajRaspored() {
-
+        raspored.refresh(raspored.getDogadjaji());
     }
 
     public Raspored getRaspored() {
@@ -82,28 +86,28 @@ public class Implemetacija1 implements Specifikacija {
     }
 
 
-    public void nejmarUPetercu() {
-        //ovo jednostavno mora na ovaj nacin, nema sanse da se koristi obrisiKolonu jer to pravi problem
-        List<Integer> zaBrisanje = new ArrayList<>();
-        for (int i = 0; i < raspored.getHeader().getStavkeDogadjaja().size(); i++) {
-            String columnHeader = raspored.getHeader().getStavkeDogadjaja().get(i);
-            if (!columnHeader.equals("Termin") && !columnHeader.equals("Dan") && !columnHeader.equals("Učionica")) {
-                zaBrisanje.add(i);
-            }
-        }
-        for (int i = zaBrisanje.size() - 1; i >= 0; i--) {
-            int columnIndex = zaBrisanje.get(i);
-            raspored.getHeader().getStavkeDogadjaja().remove(columnIndex);
-        }
-        for (int i = 0; i < raspored.getDogadjaji().size(); i++) {
-            List<String> row = raspored.getDogadjaji().get(i).getStavkeDogadjaja();
-            for (int j = zaBrisanje.size() - 1; j >= 0; j--) {
-                int columnIndex = zaBrisanje.get(j);
-                row.remove(columnIndex);
-            }
-        }
-        raspored.refresh(raspored.getDogadjaji());
-    }
+//    public void nejmarUPetercu(int index) {
+//        //ovo jednostavno mora na ovaj nacin, nema sanse da se koristi obrisiKolonu jer to pravi problem
+//        List<Integer> zaBrisanje = new ArrayList<>();
+//        for (int i = 0; i < raspored.getHeader().getStavkeDogadjaja().size(); i++) {
+//            String columnHeader = raspored.getHeader().getStavkeDogadjaja().get(i);
+//            if (!columnHeader.equals("Termin") && !columnHeader.equals("Dan") && !columnHeader.equals("Učionica")) {
+//                zaBrisanje.add(i);
+//            }
+//        }
+//        for (int i = zaBrisanje.size() - 1; i >= 0; i--) {
+//            int columnIndex = zaBrisanje.get(i);
+//            raspored.getHeader().getStavkeDogadjaja().remove(columnIndex);
+//        }
+//        for (int i = 0; i < raspored.getDogadjaji().size(); i++) {
+//            List<String> row = raspored.getDogadjaji().get(i).getStavkeDogadjaja();
+//            for (int j = zaBrisanje.size() - 1; j >= 0; j--) {
+//                int columnIndex = zaBrisanje.get(j);
+//                row.remove(columnIndex);
+//            }
+//        }
+//        raspored.refresh(raspored.getDogadjaji());
+//    }
 
 
     private int dajIndeksZaString(String s){

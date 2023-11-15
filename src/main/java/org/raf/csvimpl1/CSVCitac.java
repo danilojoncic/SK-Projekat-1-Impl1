@@ -112,7 +112,7 @@ public class CSVCitac {
             // Create a FileWriter object with the file name
             FileWriter fileWriter = new FileWriter(fileName);
             fileWriter.close();
-            System.out.println("Temp file created");
+//            System.out.println("Temp file created");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -125,7 +125,7 @@ public class CSVCitac {
                 fileWriter.write("\n");
             }
             fileWriter.close();
-            System.out.println("Temp file created");
+//            System.out.println("Temp file created");
         } catch (IOException e) {
             e.printStackTrace();
         }
