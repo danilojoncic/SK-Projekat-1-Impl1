@@ -1,19 +1,24 @@
-package org.raf;
+package org.raf.paket;
 
 import com.google.common.io.Files;
 import model.Specifikacija;
 import model.boljeRijesenje.Dogadjaj;
+import model.boljeRijesenje.Manager;
 import model.boljeRijesenje.Raspored;
+import org.raf.StampacKonzola;
 import org.raf.csvimpl1.CSVCitac;
 import org.raf.csvimpl1.CSVPisac;
 import org.raf.jsonimpl1.JSONCitac;
 import org.raf.jsonimpl1.JSONPIsac;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Implemetacija1 implements Specifikacija {
+
+    static {
+        Manager.setSpecifikacija(new Implemetacija1());
+    }
 
     private Raspored raspored;
 
@@ -66,7 +71,7 @@ public class Implemetacija1 implements Specifikacija {
 
 
     @Override
-    public void ucitajRaspored(String s){
+    public Raspored ucitajRaspored(String s){
         String[] extensionCheck = s.split("\\.");
         if(Files.getFileExtension(s).equalsIgnoreCase("csv")){ // najjaca biblioteka bayo Guava firmetina
             CSVCitac csvCitac = new CSVCitac();
@@ -83,6 +88,7 @@ public class Implemetacija1 implements Specifikacija {
                 throw new RuntimeException(e);
             }
         }
+        return raspored;
     }
 
 
